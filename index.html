@@ -69,9 +69,9 @@
 
   <div class="container">
     <h1>코드생성기 🔢</h1>
-    <p>가운데 번호와 끝 번호를 하이픈(-)으로 구분해 입력하세요.<br>(예: 1234-5678)</p>
+    <p>전화번호 8자리를 입력하세요</p>
 
-    <input type="password" id="abValue" placeholder="예: 1234-5678"><br>
+    <input type="password" id="abInput" placeholder="예: 12345678"><br>
 
     <button onclick="generateCode()">코드 만들기</button>
 
@@ -80,19 +80,18 @@
 
   <script>
     function generateCode() {
-      const input = document.getElementById('abValue').value;
+      const input = document.getElementById('abInput').value;
       const resultBox = document.getElementById('resultBox');
 
-      const parts = input.split("-");
-      if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) {
-        resultBox.innerHTML = "⚠️ 올바른 형식(1234-5678)으로 입력해주세요!";
+      if (!/^[0-9]{8}$/.test(input)) {
+        resultBox.innerHTML = "⚠️ 정확히 8자리 숫자를 입력해주세요!";
         return;
       }
 
-      const a = parseInt(parts[0]);
-      const b = parseInt(parts[1]);
-
+      const a = parseInt(input.slice(0, 4));
+      const b = parseInt(input.slice(4, 8));
       const code = ((a * 125) * 160) + b + b;
+
       resultBox.innerHTML = `🔢 결과: <strong>${code}</strong>`;
     }
   </script>
