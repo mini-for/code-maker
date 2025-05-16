@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>코드 생성</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+    body {
+      font-family: 'Gowun Batang', serif;
+      background: #fdfaf6;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 50px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 2px solid #ffe1b3;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 80%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 2px solid #ffd3a0;
+      border-radius: 10px;
+      background: #fffdf7;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #ffb678;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>코드 생성 🔢</h1>
+    <p>가운데 4자리와 끝 4자리를 입력하시오</p>
+
+    <input type="number" id="aValue" placeholder="예: 1234" maxlength="4"><br>
+    <input type="number" id="bValue" placeholder="예: 5678" maxlength="4"><br>
+
+    <button onclick="calculateCode()">코드 만들기</button>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <script>
+    function calculateCode() {
+      const a = parseInt(document.getElementById('aValue').value);
+      const b = parseInt(document.getElementById('bValue').value);
+      const resultBox = document.getElementById('resultBox');
+
+      if (isNaN(a) || isNaN(b)) {
+        resultBox.innerHTML = "⚠️ 숫자를 모두 입력해주세요!";
+        return;
+      }
+
+      // 새로운 공식 적용
+      const code = ((a * 125) * 160) + b + b;
+      resultBox.innerHTML = `✨ 계산 결과: <strong>${code}</strong>`;
+    }
+  </script>
+
+</body>
+</html>
